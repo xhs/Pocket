@@ -9,7 +9,7 @@ from framer import Framer
 from messager import Messager
 
 class Pocket(object):
-  def __init__(self, url):
+  def __init__(self, url, run=False):
     self.scheme = None
     self.host = None
     self.port = None
@@ -31,7 +31,8 @@ class Pocket(object):
       reactor.connectSSL(self.host, self.port, streamer, ssl.ClientContextFactory())
 
     self._thread = None
-    self.run()
+    if run:
+      self.run()
 
   def send(self, message, binary=False):
     reactor.callFromThread(self._send, message, binary)
@@ -109,7 +110,7 @@ class Pocket(object):
       self.path += '?' + parsed_url.query
 
 if __name__ == '__main__':
-  pocket = Pocket('ws://localhost/api/v1/websocket')
+  pocket = Pocket('ws://localhost/api/v1/websocket', run=True)
 
   import time
   try:

@@ -22,7 +22,7 @@ class Client(Pocket):
 
 if __name__ == '__main__':
 
-	pocket = Client('ws://localhost/websocket/echo')
+	pocket = Client('ws://localhost/websocket/echo', run=True)
 
 	import time
 	try:
