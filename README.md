@@ -5,7 +5,7 @@
 
 #### Example
 
-```
+```python
 from pocket import Pocket
 
 class Client(Pocket):
