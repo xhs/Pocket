@@ -28,7 +28,8 @@ if __name__ == '__main__':
 	try:
 		while True:
 			time.sleep(3)
-			pocket.send('hello')
+			if pocket.ready:
+				pocket.send('hello')
 	except KeyboardInterrupt:
 		pocket.close()
 ```
