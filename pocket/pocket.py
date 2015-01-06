@@ -54,9 +54,9 @@ class Pocket(object):
   def feed(self, message):
     t = message.type
     if t == 'text':
-      self.on_text(message.body)
+      self.on_text(str(message.body))
     elif t == 'binary':
-      self.on_binary(message.body)
+      self.on_binary(str(message.body))
     elif t == 'close':
       self._actors['messager'].send_close(1000, 'Normal Closure')
       self._actors['streamer'].close()
