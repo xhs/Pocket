@@ -1,7 +1,7 @@
 
-## Pocket
+### Pocket
 
-##### Actor-model based WebSocket client in Python
+Actor-model based WebSocket client in Python
 
 #### Example
 
