@@ -48,7 +48,7 @@ class WebPocket(object):
     self._thread.start()
 
   def stop(self):
-    reactor.stop()
+    reactor.callFromThread(reactor.stop)
     self.on_close(1001)
 
   def feed(self, message):
