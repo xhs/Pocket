@@ -43,6 +43,7 @@ class Streamer(ReconnectingClientFactory):
     return socket
 
   def clientConnectionLost(self, connector, reason):
+    self.handshaken = False
     if not self.halt:
       ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
 
