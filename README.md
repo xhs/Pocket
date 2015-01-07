@@ -1,14 +1,14 @@
 
-### Pocket
+### WebPocket
 
 Actor-model based WebSocket client in Python
 
 #### Example
 
 ```python
-from pocket import Pocket
+from webpocket import WebPocket
 
-class Client(Pocket):
+class Client(WebPocket):
 	def __init__(self, url):
 		super(Client, self).__init__(url)
 		self.ready = False

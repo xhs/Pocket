@@ -8,7 +8,7 @@ from handshaker import Handshaker
 from framer import Framer
 from messager import Messager
 
-class Pocket(object):
+class WebPocket(object):
   def __init__(self, url, run=False):
     self.scheme = None
     self.host = None
@@ -110,7 +110,7 @@ class Pocket(object):
       self.path += '?' + parsed_url.query
 
 if __name__ == '__main__':
-  pocket = Pocket('ws://localhost/api/v1/websocket', run=True)
+  pocket = WebPocket('ws://localhost/api/v1/websocket', run=True)
 
   import time
   try:
