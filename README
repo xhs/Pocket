@@ -3,6 +3,12 @@
 
 Actor-model based WebSocket client in Python
 
+#### Install
+
+```
+pip install WebPocket
+```
+
 #### Example
 
 ```python
