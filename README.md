@@ -15,8 +15,8 @@ pip install WebPocket
 from webpocket import WebPocket
 
 class Client(WebPocket):
-	def __init__(self, url):
-		super(Client, self).__init__(url)
+	def __init__(self, url, run):
+		super(Client, self).__init__(url, run)
 		self.ready = False
 
 	def on_open(self):
@@ -37,5 +37,5 @@ if __name__ == '__main__':
 			if pocket.ready:
 				pocket.send('hello')
 	except KeyboardInterrupt:
-		pocket.close()
+		pocket.stop()
 ```
