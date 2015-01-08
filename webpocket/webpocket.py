@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from urlparse import urlsplit
 from threading import Thread
 from twisted.internet import reactor, ssl
 from streamer import Streamer
 from handshaker import Handshaker
 from framer import Framer
 from messager import Messager
+from compat import urlsplit
 
 class WebPocket(object):
   def __init__(self, url, run=False):
