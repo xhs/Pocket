@@ -9,17 +9,19 @@ from messager import Messager
 from compat import urlsplit
 
 class WebPocket(object):
-  def __init__(self, url, run=False):
+  def __init__(self, url, run=False, **options):
     self.scheme = None
     self.host = None
     self.port = None
     self.path = None
     self._parse_url(url)
 
+    payload_limit = options.get('payload_limit') or 0
+
     actors = {}
     actors['pocket'] = self
     actors['messager'] = Messager(actors)
-    actors['framer'] = Framer(actors)
+    actors['framer'] = Framer(actors, payload_limit=payload_limit)
     actors['handshaker'] = Handshaker(actors, self.host, self.port, self.path)
     streamer = Streamer(actors)
     actors['streamer'] = streamer
