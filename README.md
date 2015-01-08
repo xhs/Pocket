@@ -5,7 +5,7 @@ Actor-model based WebSocket client in Python
 
 #### Install
 
-```
+```shell
 pip install WebPocket
 ```
 
@@ -39,3 +39,7 @@ if __name__ == '__main__':
 	except KeyboardInterrupt:
 		pocket.stop()
 ```
+
+#### Todo
+
+add Python 3.x support
