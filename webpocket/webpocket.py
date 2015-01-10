@@ -53,6 +53,7 @@ class WebPocket(object):
     self._thread.start()
 
   def stop(self):
+    reactor.callFromThread(self._actors['streamer'].close_connection)
     reactor.callFromThread(reactor.stop)
     self.on_close(1001)
 
