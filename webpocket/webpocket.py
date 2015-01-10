@@ -7,6 +7,7 @@ from handshaker import Handshaker
 from framer import Framer
 from messager import Messager
 from compat import urlsplit
+from exc import *
 
 class WebPocket(object):
   def __init__(self, url, run=False, **options):
@@ -31,6 +32,8 @@ class WebPocket(object):
       reactor.connectTCP(self.host, self.port, streamer)
     elif self.scheme == 'wss':
       reactor.connectSSL(self.host, self.port, streamer, ssl.ClientContextFactory())
+    else:
+      raise WebSocketProtocolError('Invalid scheme: ' + self.scheme)
 
     self._thread = None
     if run:
