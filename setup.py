@@ -13,4 +13,4 @@ setup(name='WebPocket',
       packages=['webpocket'],
       platforms=["any"],
       license='BSD',
-      install_requires=['Twisted'])
+      install_requires=['Twisted', 'service_identity'])
