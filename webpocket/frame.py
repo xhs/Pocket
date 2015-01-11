@@ -66,7 +66,6 @@ class Frame(object):
     return str(buf)
 
   def decode(self, raw_data):
-    raw_data = bytearray(raw_data)
     try:
       first_word = unpack('!2B', raw_data[:2])
       left_data = raw_data[2:]
@@ -94,15 +93,16 @@ class Frame(object):
 
       if self.mask == 0x1:
         masking_key = {}
-        for i in range(4):
-          masking_key[i] = left_data[i]
         self.masking_key = left_data[:4]
+        for i in range(4):
+          masking_key[i] = self.masking_key[i]
         self.masked_payload = left_data[4:4 + length]
 
-        self.payload = copy(self.masked_payload)
+        self.payload = bytearray(copy(self.masked_payload))
         for i in range(length):
           self.payload[i] ^= masking_key[i % 4]
 
+        self.payload = str(self.payload)
         left_data = left_data[4 + length:]
       else:
         self.payload = left_data[:length]
