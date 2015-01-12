@@ -4,7 +4,7 @@
 from setuptools import setup
 
 setup(name='WebPocket',
-      version='0.1.2',
+      version='0.1.4',
       description='Actor-model based WebSocket client in Python',
       long_description='Actor-model based WebSocket client in Python',
       author='xhs',

@@ -29,7 +29,7 @@ class Framer(object):
         binary = self._send_fragment(0, OPCODE_CONTINUE, binary, limit)
       self._send_fragment(1, OPCODE_CONTINUE, binary, limit)
     else:
-      data = Frame(opcode=OPCODE_BINARY, payload=text).encode()
+      data = Frame(opcode=OPCODE_BINARY, payload=binary).encode()
       self._actors['streamer'].send(data)
 
   def _send_fragment(self, fin, opcode, payload, limit):
