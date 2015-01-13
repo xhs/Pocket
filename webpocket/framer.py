@@ -11,25 +11,20 @@ class Framer(object):
     self._payload_limit = payload_limit
 
   def send_text(self, text):
-    limit = self._payload_limit
-    if limit > 0 and limit < len(text):
-      text = self._send_fragment(0, OPCODE_TEXT, text, limit)
-      while limit < len(text):
-        text = self._send_fragment(0, OPCODE_CONTINUE, text, limit)
-      self._send_fragment(1, OPCODE_CONTINUE, text, limit)
-    else:
-      data = Frame(opcode=OPCODE_TEXT, payload=text).encode()
-      self._actors['streamer'].send(data)
+    self._send_data(OPCODE_TEXT, text)
 
   def send_binary(self, binary):
+    self._send_data(OPCODE_BINARY, binary)
+
+  def _send_data(self, opcode, data):
     limit = self._payload_limit
-    if limit > 0 and limit < len(binary):
-      binary = self._send_fragment(0, OPCODE_BINARY, binary, limit)
-      while limit < len(binary):
-        binary = self._send_fragment(0, OPCODE_CONTINUE, binary, limit)
-      self._send_fragment(1, OPCODE_CONTINUE, binary, limit)
+    if limit > 0 and limit < len(data):
+      data = self._send_fragment(0, opcode, data, limit)
+      while limit < len(data):
+        data = self._send_fragment(0, OPCODE_CONTINUE, data, limit)
+      self._send_fragment(1, OPCODE_CONTINUE, data, limit)
     else:
-      data = Frame(opcode=OPCODE_BINARY, payload=binary).encode()
+      data = Frame(opcode=opcode, payload=data).encode()
       self._actors['streamer'].send(data)
 
   def _send_fragment(self, fin, opcode, payload, limit):

@@ -42,4 +42,4 @@ if __name__ == '__main__':
 
 #### Todo
 
-add Python 3.x support
+add server side function
