@@ -118,16 +118,3 @@ class Frame(object):
 
     except (IndexError, struct.error):
       raise InsufficientBytesException()
-
-if __name__ == '__main__':
-  a = Frame(payload='foobar')
-  data = a.encode()
-  a.inspect()
-
-  b, left_data = Frame().decode(data)
-  b.inspect()
-
-  payload = pack('!H', 1000) + 'Normal Closure'
-  c = Frame(opcode=OPCODE_CLOSE, payload=payload)
-  print hexlify(c.encode())
-  c.inspect()

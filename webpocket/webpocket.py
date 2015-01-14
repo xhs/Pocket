@@ -114,14 +114,3 @@ class WebPocket(object):
 
     if parsed_url.query:
       self.path += '?' + parsed_url.query
-
-if __name__ == '__main__':
-  pocket = WebPocket('ws://localhost/api/v1/websocket', run=True)
-
-  import time
-  try:
-    while True:
-      time.sleep(3)
-      pocket.send('{"action":"ping"}')
-  except KeyboardInterrupt:
-    pocket.stop()

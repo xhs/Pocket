@@ -17,6 +17,3 @@ class Message(object):
       OPCODE_PONG: 'pong'
     }
     return opcodes2type[opcode]
-
-if __name__ == '__main__':
-  print Message.map_type(OPCODE_CLOSE)

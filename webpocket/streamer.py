@@ -56,12 +56,3 @@ class Streamer(ReconnectingClientFactory):
   def close(self):
     self.halt = True
     self.socket.close_connection()
-
-if __name__ == '__main__':
-  from handshaker import Handshaker
-  shaker = Handshaker('localhost', path='/api/v1/websocket')
-
-  from twisted.internet import reactor
-  streamer = Streamer(shaker, 'dummy')
-  reactor.connectTCP('localhost', 80, streamer)
-  reactor.run()

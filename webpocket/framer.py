@@ -50,15 +50,3 @@ class Framer(object):
     payload = pack('!H', code) + reason
     data = Frame(opcode=OPCODE_CLOSE, payload=payload).encode()
     self._actors['streamer'].send(data)
-
-if __name__ == '__main__':
-  class DummyMessager(object):
-    def feed(self, frame):
-      frame.inspect()
-
-  messager = DummyMessager()
-  framer = Framer({'messager': messager})
-
-  data = Frame(payload='foobar').encode()
-  framer.feed(data[:3])
-  framer.feed(data[3:])

@@ -61,18 +61,3 @@ class Handshaker(object):
     r.append('Sec-WebSocket-Version: 13')
     r.append('\r\n')
     return '\r\n'.join(r)
-
-if __name__ == '__main__':
-  shaker = Handshaker({}, 'localhost')
-  print shaker.handshake_request
-
-  r = []
-  r.append('HTTP/1.1 101 Switching Protocols')
-  r.append('Upgrade: websocket')
-  r.append('Connection: Upgrade')
-  r.append('Sec-WebSocket-Accept: InvalidChallenge')
-  r.append('\r\nDummyBody')
-  data = '\r\n'.join(r)
-
-  print shaker.feed(data[:15])
-  print shaker.feed(data[15:])
