@@ -39,7 +39,3 @@ if __name__ == '__main__':
 	except KeyboardInterrupt:
 		pocket.stop()
 ```
-
-#### Todo
-
-add server side function
